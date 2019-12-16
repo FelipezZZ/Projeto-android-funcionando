@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "960638218639",
+    "firebase_url": "https://dass21-22efe.firebaseio.com",
+    "project_id": "dass21-22efe",
+    "storage_bucket": "dass21-22efe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:960638218639:android:88665fd4f561eb6d1a1bfa",
+        "android_client_info": {
+          "package_name": "com.example.dass21"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "960638218639-l0p3juh8jmamtm1id80lu999kgb8n39o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7ZHHE2lw8RCw5RPh6pjS7zmzyinD3d5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "960638218639-l0p3juh8jmamtm1id80lu999kgb8n39o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

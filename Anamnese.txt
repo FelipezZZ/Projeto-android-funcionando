@@ -1,0 +1,2 @@
+Salvar as respostar num array
+e calcular depois que td for respondido

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.senaitccdeusetop">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="AUXILIUM"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Activitys.EditarPerfilActivity"></activity>
+        <activity android:name=".Activitys.AnamnesesActivity" />
+        <activity android:name=".Activitys.PesquisaActivity" />
+        <activity android:name=".Chat.ChatActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Chat.ContactsActivity" />
+        </activity>
+        <activity
+            android:name=".Chat.ContactsActivity"
+            android:label="Contatos">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activitys.PesquisarEstagiarioActivity" />
+        </activity>
+        <activity android:name=".Activitys.PesquisarEstagiarioActivity" />
+        <activity android:name=".Activitys.DASS21Activity" />
+        <activity android:name=".Activitys.VerificaTipoAcessoActivity" />
+        <activity android:name=".Activitys.TypeUserActivity" />
+        <activity android:name=".Activitys.LoginActivity" />
+        <activity android:name=".Activitys.CadastroActivity" />
+        <activity android:name=".Activitys.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

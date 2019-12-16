@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "2973135202",
+    "firebase_url": "https://senaitccdeusetop.firebaseio.com",
+    "project_id": "senaitccdeusetop",
+    "storage_bucket": "senaitccdeusetop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2973135202:android:3436f29253a363cd903c3b",
+        "android_client_info": {
+          "package_name": "com.example.senaitccdeusetop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "2973135202-4gme6vt0t5hs6qntpiv3pem8t9mv9dea.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj_L_0Q8KSR5P-KlXOlxo8IqkqRczrABA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "2973135202-4gme6vt0t5hs6qntpiv3pem8t9mv9dea.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

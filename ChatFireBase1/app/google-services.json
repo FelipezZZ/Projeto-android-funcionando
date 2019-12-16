@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "210327418173",
+    "firebase_url": "https://chatfirebase-felipezzz.firebaseio.com",
+    "project_id": "chatfirebase-felipezzz",
+    "storage_bucket": "chatfirebase-felipezzz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210327418173:android:757628ae7f52aa910c4154",
+        "android_client_info": {
+          "package_name": "com.example.chatfirebase1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210327418173-5ga0aa653j4d12frrftcc3arn61r3ndk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMy4PR8rzHOGCt0wGFVQKQQ-fun9Q-cPs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210327418173-5ga0aa653j4d12frrftcc3arn61r3ndk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

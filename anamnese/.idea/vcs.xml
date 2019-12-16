@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TCC_Android_SENAI" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TCC_Backend_SENAI" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TCC_Frontend_SENAI" vcs="Git" />
+  </component>
+</project>

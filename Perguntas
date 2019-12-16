@@ -1,0 +1,25 @@
+    List<Pergunta> perguntas = new ArrayList<Pergunta>() {
+        {
+            add(new Pergunta(3, "1-Tive dificuldade de me acalmar"));
+            add(new Pergunta(1, "2-Minha boca ficou seca"));
+            add(new Pergunta(2, "3-Nao tive nenhum sentimento positivo"));
+            add(new Pergunta(1, "4-Em alguns momentos tive dificuldade de respirar (chiado e falta de ar sem esforço físico)"));
+            add(new Pergunta(2, "5-Não consegui ter iniciativa para fazer as coisas"));
+            add(new Pergunta(3, "6-Exagerei intencionalmente ao reagir a situações"));
+            add(new Pergunta(1, "7-Tive tremedeira (por exemplo, nas mãos)"));
+            add(new Pergunta(3, "8-Senti que estava sempre nervoso(a)"));
+            add(new Pergunta(1, "9-Me preocupei com situações em que poderia entrar em pânico e parecer ridículo(a)"));
+            add(new Pergunta(2, "10-Senti que não tinha vontade de nada"));
+            add(new Pergunta(3, "11-Me senti inquieto(a)"));
+            add(new Pergunta(3, "12-Tive dificuldade de relaxar"));
+            add(new Pergunta(2, "13-Me senti deprimido e sem motivação"));
+            add(new Pergunta(3, "14-Eu não conseguia tolerar as coisas que me impediam de continuar a fazer o que estava realizando"));
+            add(new Pergunta(1, "15-Eu senti que ia entrar em pânico"));
+            add(new Pergunta(2, "16-Nada me deixou entusiasmado"));
+            add(new Pergunta(2, "17-Eu senti que era uma pessoa sem valor"));
+            add(new Pergunta(3, "18-Eu senti que estava sendo muito sensível/emotivo"));
+            add(new Pergunta(1, "19-Eu percebi uma mudança nos meus batimentos cardíacos embora não estivesse praticando exercício rigoroso (ex. batimento cardíaco acelerado ou irregular)"));
+            add(new Pergunta(1, "20-Eu senti medo sem motivo"));
+            add(new Pergunta(2, "21-Senti que a vida não tinha sentido"));
+        }
+    };

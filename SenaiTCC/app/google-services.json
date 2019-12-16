@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "826589820540",
+    "firebase_url": "https://senaitcc.firebaseio.com",
+    "project_id": "senaitcc",
+    "storage_bucket": "senaitcc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:826589820540:android:af2998397bcee502be7bf9",
+        "android_client_info": {
+          "package_name": "com.example.senaitcc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "826589820540-m7ju1v325i164dm5cik18as91258b2td.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjPzAZXjMaCScl79PUC8R1t7uDTyDeezU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "826589820540-m7ju1v325i164dm5cik18as91258b2td.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgColor"
+    tools:context=".Activitys.DASS21Activity">
+
+
+    <TextView
+        android:id="@+id/tvPergunta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="PERGUNTA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/rgRespostas"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnConcluir"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPergunta">
+
+        <RadioButton
+            android:id="@+id/rbResposta0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0 – Não se aplicou de maneira alguma"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rbResposta1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1 – Aplicou-se em algum grau ou por pouco tempo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rbResposta2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2 – Aplicou-se em um grau considerável ou por uma boa parte do tempo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rbResposta3"
+            android:layout_width="406dp"
+            android:layout_height="wrap_content"
+            android:text="3 – Aplicou-se muito ou na maioria do tempo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="18sp" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnConcluir"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:onClick="btnConcluirOnClick"
+        android:text="Concluirr"
+        android:visibility="invisible"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteY="607dp" />
+
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="btnNextOnClick"
+        android:text="Responder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.844"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnConcluir" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

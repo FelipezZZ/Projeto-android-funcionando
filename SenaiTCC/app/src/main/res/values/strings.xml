@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">SenaiTCC</string>
+    <string name="enter">Entrar</string>
+    <string name="signin">Não tem uma conta? Crie aqui!</string>
+    <string name="insert">Cadastrar</string>
+    <string name="photo">Foto</string>
+    <string name="usuario">Usuário</string>
+    <string name="estagiario">Estagiário</string>
+
+    <string-array name="universidades">
+        <item>Universidade Teste 1</item>
+        <item>Universidade Teste 2</item>
+        <item>Universidade Teste 3</item>
+        <item>Universidade Teste 4</item>
+    </string-array>
+    <string name="title_activity_teste">TesteActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+</resources>
