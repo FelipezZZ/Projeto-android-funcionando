@@ -321,6 +321,11 @@ public class PesquisaActivity extends AppCompatActivity implements AdapterView.O
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+            case R.id.item5:
+                intent = new Intent(PesquisaActivity.this,DefineHorarioActivity.class);
+                startActivity(intent);
+                return true;
+
         }
     }
 
