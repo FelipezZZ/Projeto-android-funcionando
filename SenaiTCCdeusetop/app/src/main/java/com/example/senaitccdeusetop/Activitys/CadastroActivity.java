@@ -164,8 +164,8 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
                     parametros = "acao="+acao+"&universidade="+universidade+"&RA="+RA+"&nome="+nome+"&email="+email+
                             "&senha="+senha+"&tipoPerf="+tipoperfil+"&cadastroFB="+"true";
 
-                    URL url = new URL("http://192.168.56.1:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
-//                    URL url = new URL("http://192.168.100.78:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
+//                    URL url = new URL("http://192.168.56.1:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
+                    URL url = new URL("http://192.168.100.78:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
 //                    URL url = new URL("http://10.87.202.138:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
 //                    URL url = new URL("http://10.87.202.168:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
 
@@ -195,7 +195,6 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
                 }catch(Exception e){
                     Log.i("teste", e.toString());
                 }
-
             }
 
         }).start();
@@ -219,14 +218,9 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
                         Log.i("Teste", e.getMessage());
                     }
                 });
-
-
-
     }
 
     private void cadastrarFireBase() {
-
-
         if(tipoperfil == 1){
             String filename = UUID.randomUUID().toString();
             final StorageReference ref = FirebaseStorage.getInstance().getReference("/images" + filename);
@@ -252,11 +246,13 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
-                                                    Intent intent = new Intent(CadastroActivity.this, VerificaTipoAcessoActivity.class);
+                                                        codFBinSql();
 
-                                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                                                    startActivity(intent);
+//                                                    Intent intent = new Intent(CadastroActivity.this, VerificaTipoAcessoActivity.class);
+//
+//                                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//
+//                                                    startActivity(intent);
 
                                                 }
                                             })
@@ -296,11 +292,13 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Intent intent = new Intent(CadastroActivity.this, VerificaTipoAcessoActivity.class);
+                            codFBinSql();
 
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                            startActivity(intent);
+//                            Intent intent = new Intent(CadastroActivity.this, VerificaTipoAcessoActivity.class);
+//
+//                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//
+//                            startActivity(intent);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -311,6 +309,60 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
                     });
         }
 
+    }
+
+    private void codFBinSql() {
+
+        final int Pcod_pessoa = cod_pessoa;
+        final String cod_firebase = FirebaseAuth.getInstance().getUid();
+
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+
+                    String acao = "codFBinSql";
+
+                    parametros = "acao="+acao+"&cod_pessoa="+Pcod_pessoa+"&cod_firebase="+cod_firebase;
+
+//                    URL url = new URL("http://192.168.56.1:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
+                    URL url = new URL("http://192.168.100.78:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
+//                    URL url = new URL("http://10.87.202.138:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
+//                    URL url = new URL("http://10.87.202.168:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
+
+
+                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
+
+                    con.setRequestMethod("POST");
+                    con.setDoOutput(true);
+
+                    DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+                    wr.writeBytes(parametros);
+
+                    BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+
+                    String apnd = "", linha = "";
+
+                    while ((linha = br.readLine()) != null)
+                        apnd += linha;
+
+                    JSONObject obj = new JSONObject();
+                    obj.put("result", apnd);
+
+                    if(String.valueOf(obj.get("result")).equals("ok")){
+                        Log.i("teste", "adicionou o codfb");
+
+                            Intent intent = new Intent(CadastroActivity.this, VerificaTipoAcessoActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                    }else{
+                        Log.i("teste", "não adicionou o codfb");
+                    }
+                }catch(Exception e){
+                    Log.i("teste", e.toString());
+                }
+            }
+
+        }).start();
     }
 
     @Override

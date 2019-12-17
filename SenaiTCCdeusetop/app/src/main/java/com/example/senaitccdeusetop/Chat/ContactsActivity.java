@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.senaitccdeusetop.Vo.Pessoa;
 import com.example.senaitccdeusetop.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -30,12 +31,16 @@ import java.util.List;
 
 public class ContactsActivity extends AppCompatActivity {
 
+    String uidLogado;
+
     private GroupAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
+
+        uidLogado = FirebaseAuth.getInstance().getUid();
 
         RecyclerView rv = findViewById(R.id.recycler_contact);
 
@@ -61,7 +66,7 @@ public class ContactsActivity extends AppCompatActivity {
 
 
     private void  fetchUsers(){
-        FirebaseFirestore.getInstance().collection("/users")
+        FirebaseFirestore.getInstance().collection("/contatos" + uidLogado)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -104,7 +109,6 @@ public class ContactsActivity extends AppCompatActivity {
         public int getLayout() {
             return R.layout.item_user;
         }
-
     }
 
 }

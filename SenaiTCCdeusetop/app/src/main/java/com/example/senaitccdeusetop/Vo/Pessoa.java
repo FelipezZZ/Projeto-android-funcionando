@@ -39,6 +39,22 @@ public class Pessoa implements Parcelable {
         }
     };
 
+    public void setFbcod_pessoa(int fbcod_pessoa) {
+        this.fbcod_pessoa = fbcod_pessoa;
+    }
+
+    public void setFbnome(String fbnome) {
+        this.fbnome = fbnome;
+    }
+
+    public void setProfileUrl(String profileUrl) {
+        this.profileUrl = profileUrl;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
     public String getUuid() {
         return uuid;
     }

@@ -1,7 +1,10 @@
 package com.example.senaitccdeusetop.Activitys;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,16 +16,31 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.senaitccdeusetop.Chat.ChatActivity;
 import com.example.senaitccdeusetop.Chat.ContactsActivity;
 import com.example.senaitccdeusetop.R;
 import com.example.senaitccdeusetop.Vo.Pessoa;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.squareup.picasso.Picasso;
+import com.xwray.groupie.GroupAdapter;
+import com.xwray.groupie.Item;
+import com.xwray.groupie.OnItemClickListener;
+import com.xwray.groupie.ViewHolder;
 
 import org.json.JSONObject;
 
@@ -31,6 +49,8 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PesquisaActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -38,6 +58,9 @@ public class PesquisaActivity extends AppCompatActivity implements AdapterView.O
     Spinner spnDia, spnInicio, spnFim;
     String Dia, inicio, fim, diaFormatado;
 
+    private GroupAdapter adapter;
+
+    private List<Pessoa> codPessoas = new ArrayList<>();
     private Pessoa logado;
     private String parametros;
     private String tipoUsuario;
@@ -46,6 +69,70 @@ public class PesquisaActivity extends AppCompatActivity implements AdapterView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pesquisa);
+
+        FirebaseFirestore.getInstance().collection("/users")
+                .document(FirebaseAuth.getInstance().getUid())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        logado = documentSnapshot.toObject(Pessoa.class);
+                        verificarTipoUsuario();
+                    }
+                });
+
+        final String uidLogado = FirebaseAuth.getInstance().getUid();
+
+        RecyclerView rv = findViewById(R.id.recycler_contact);
+
+        adapter = new GroupAdapter<>();
+        rv.setAdapter(adapter);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+
+        adapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull Item item, @NonNull View view) {
+                Log.i("teste", "cliko");
+
+                UserItem userItem = (UserItem) item;
+                String codigoEstagiario = userItem.user.getUuid();
+                String nomeEstagiario = userItem.user.getFbnome();
+                Log.i("teste", "cod do maniaco " + codigoEstagiario);
+                Log.i("teste", "nome do maniaco " + nomeEstagiario);
+
+                FirebaseFirestore.getInstance().collection("contatos" + uidLogado)
+                        .document(codigoEstagiario)
+                        .set(userItem.user)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.i("teste", "adicionou");
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+
+                FirebaseFirestore.getInstance().collection("contatos" + codigoEstagiario)
+                        .document(uidLogado)
+                        .set(logado)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.i("teste", "adicionou");
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+
+            }
+        });
+
         btnPesquisar = findViewById(R.id.btnPesquisar);
         btnPesquisar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,16 +164,88 @@ public class PesquisaActivity extends AppCompatActivity implements AdapterView.O
         adpHorario.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnFim.setAdapter(adpHorario);
 
-        FirebaseFirestore.getInstance().collection("/users")
-                .document(FirebaseAuth.getInstance().getUid())
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        logado = documentSnapshot.toObject(Pessoa.class);
-                        verificarTipoUsuario();
-                    }
-                });
+        fetchUsers();
+    }
+
+    private void  fetchUsers(){
+
+        List<String> codFb = new ArrayList<>();
+        codFb.add("15Wj548WSBRzKRRzojdnV9qzCgf1");
+        codFb.add("2R4m49qfqxenrG3Bb40XXehH1Lz1");
+        codFb.add("6lURbhdNfhgQ6gla6Fvghwdsk8L2");
+
+        for (String s : codFb){
+            FirebaseFirestore.getInstance().collection("/users").document(s).get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            Pessoa user = documentSnapshot.toObject(Pessoa.class);
+                            adapter.add(new UserItem(user));
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                }
+            });
+        }
+
+//        DocumentReference docRef = FirebaseFirestore.getInstance().collection("/users").document("");
+//        List<DocumentSnapshot> future = (List<DocumentSnapshot>) docRef.get();
+//        DocumentSnapshot document = future.get(0);
+//        if (document.exists()) {
+//            Pessoa user = document.toObject(Pessoa.class);
+//            adapter.add(new UserItem(user));
+//        } else {
+//            System.out.println("No such document!");
+//        }
+
+
+
+//        FirebaseFirestore.getInstance().collection("/users")
+//                .document("kk")
+//                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+//                        if(e != null){
+//                            Log.e("Teste", e.getMessage(), e);
+//                            return;
+//                        }
+//
+//                        List<DocumentSnapshot> docs = queryDocumentSnapshots.getDocuments();
+//                        for(DocumentSnapshot doc : docs){
+//                            Pessoa user = doc.toObject(Pessoa.class);
+//
+//                            adapter.add(new UserItem(user));
+//                        }
+//                    }
+//                });
+    }
+
+    private class UserItem extends Item<ViewHolder> {
+
+        private final Pessoa user;
+
+        private UserItem(Pessoa user){
+            this.user = user;
+        }
+
+        @Override
+        public void bind(@NonNull ViewHolder viewHolder, int position) {
+            TextView txtUsername = viewHolder.itemView.findViewById(R.id.textView);
+            ImageView imgPhoto = viewHolder.itemView.findViewById(R.id.imageView);
+
+            txtUsername.setText(user.getFbnome());
+
+            Picasso.get()
+                    .load(user.getProfileUrl())
+                    .into(imgPhoto);
+        }
+
+        @Override
+        public int getLayout() {
+            return R.layout.item_user;
+        }
     }
 
     private void verificarTipoUsuario() {
@@ -252,15 +411,15 @@ public class PesquisaActivity extends AppCompatActivity implements AdapterView.O
 
 
         if (Integer.parseInt(inicioFormatado[0]) > Integer.parseInt(fimFormatado[0])) {
-
             Toast.makeText(this, "O horário de inicio precisa ser maior que o de fim", Toast.LENGTH_SHORT).show();
         } else{
-
             final String horario = inicio + "~~" + fim;
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
+                        Log.i("teste", "oto peganu estagiaro");
+
                         String acao = "pesquisaEstagiario";
 
                         String parametros = "acao=" + acao + "&dia=" + dia + "&horario=" + horario;
@@ -280,15 +439,16 @@ public class PesquisaActivity extends AppCompatActivity implements AdapterView.O
 
                         BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
 
-                        String apnd = "", linha = "";
-
-                        while ((linha = br.readLine()) != null)
-                            apnd += linha;
-
-                        JSONObject obj = new JSONObject();
-                        obj.put("cod_pessoa", apnd);
-                        Log.i("batata","conseguiu colocar no json");
-                        Toast.makeText(PesquisaActivity.this, "F", Toast.LENGTH_SHORT).show();
+                        String linha = "";
+                        JSONObject obj;
+                        while ((linha = br.readLine()) != null){
+                            obj = new JSONObject(linha);
+                            Log.i("teste", "obj " + obj);
+                            Pessoa p = new Pessoa();
+                            p.setFbcod_pessoa(obj.getInt("cod_pessoa"));
+                            Log.i("teste", "FBcod " + p.getFbcod_pessoa());
+                            codPessoas.add(p);
+                        }
                     } catch (Exception e) {
                         Log.e("Exception", e.toString());
                     }
