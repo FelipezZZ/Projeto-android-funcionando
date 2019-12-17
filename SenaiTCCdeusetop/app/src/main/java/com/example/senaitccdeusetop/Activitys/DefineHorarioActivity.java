@@ -169,8 +169,9 @@ public class DefineHorarioActivity extends AppCompatActivity implements AdapterV
 
                         String parametros = "acao=" + acao + "&dia=" + dia + "&horario=" + horario+"&codPessoa"+codPessoa;
 
+                        URL url = new URL("http://192.168.0.102:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
                        // URL url = new URL("http://192.168.100.78:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
-                        URL url = new URL("http://10.87.202.138:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
+//                        URL url = new URL("http://10.87.202.138:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
                         // URL url = new URL ("http://10.87.202.168:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
 
                         Log.i("batata","chegou na url");

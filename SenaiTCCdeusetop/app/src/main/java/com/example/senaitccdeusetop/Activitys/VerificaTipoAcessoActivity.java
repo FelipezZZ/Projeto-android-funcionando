@@ -57,7 +57,8 @@ public class VerificaTipoAcessoActivity extends AppCompatActivity {
                     parametros = "acao="+acao+"&codPessoa="+cod_pessoa;
 
 
-                    URL url = new URL("http://10.87.202.138:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
+                    URL url = new URL("http://192.168.0.102:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
+//                    URL url = new URL("http://10.87.202.138:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
 
 //                    URL url = new URL("http://192.168.56.1:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
            //        URL url = new URL("http://192.168.100.78:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
@@ -105,7 +106,8 @@ public class VerificaTipoAcessoActivity extends AppCompatActivity {
                     String cod_pessoa = String.valueOf(logado.getFbcod_pessoa());
 
                     parametros = "acao="+acao+"&codPessoa="+cod_pessoa;
-                    URL url = new URL("http://10.87.202.138:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
+                    URL url = new URL("http://192.168.0.102:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
+//                    URL url = new URL("http://10.87.202.138:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
 //                    URL url = new URL("http://192.168.56.1:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
                  ///   URL url = new URL("http://192.168.100.78:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
                     //URL url = new URL("http://10.87.202.177:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
@@ -131,7 +133,7 @@ public class VerificaTipoAcessoActivity extends AppCompatActivity {
 
                     if(obj2.get("primeiroAcesso").equals("true")){
                         if(tipoUsuario.equals("1")){
-                            Intent intent = new Intent(VerificaTipoAcessoActivity.this, DefineHorarioActivity.class);
+                            Intent intent = new Intent(VerificaTipoAcessoActivity.this, AnamnesesActivity.class);
                             intent.putExtra("codPessoa", cod_pessoa);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
@@ -144,7 +146,7 @@ public class VerificaTipoAcessoActivity extends AppCompatActivity {
                         }
                     }else{
                         if(tipoUsuario.equals("1")){
-                            Intent intent = new Intent(VerificaTipoAcessoActivity.this, DefineHorarioActivity.class);
+                            Intent intent = new Intent(VerificaTipoAcessoActivity.this, AnamnesesActivity.class);
                             intent.putExtra("codPessoa", cod_pessoa);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);

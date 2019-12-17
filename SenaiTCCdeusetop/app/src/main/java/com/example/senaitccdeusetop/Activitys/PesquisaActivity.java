@@ -163,14 +163,12 @@ public class PesquisaActivity extends AppCompatActivity implements AdapterView.O
         spnFim.setOnItemSelectedListener(this);
         adpHorario.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnFim.setAdapter(adpHorario);
-
-        fetchUsers();
     }
 
-    private void  fetchUsers(){
+    private void  fetchUsers(List<String> codFb){
 
-        List<String> codFb = new ArrayList<>();
-        codFb.add("lwR0SMHkoZXIhgbfoYmT7ovoaTC2");
+//        List<String> codFb = new ArrayList<>();
+//        codFb.add("lwR0SMHkoZXIhgbfoYmT7ovoaTC2");
 
         for (String s : codFb){
             FirebaseFirestore.getInstance().collection("/users").document(s).get()
@@ -254,7 +252,8 @@ public class PesquisaActivity extends AppCompatActivity implements AdapterView.O
                     String cod_pessoa = String.valueOf(logado.getFbcod_pessoa());
 
                     parametros = "acao="+acao+"&codPessoa="+cod_pessoa;
-                    URL url = new URL("http://10.87.202.138:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
+                    URL url = new URL("http://192.168.0.102:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
+//                    URL url = new URL("http://10.87.202.138:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
                 //    URL url = new URL("http://192.168.100.78:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
                     //URL url = new URL("http://10.87.202.177:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
 //                    URL url = new URL("http://10.87.202.168:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
@@ -344,29 +343,32 @@ public class PesquisaActivity extends AppCompatActivity implements AdapterView.O
 
             case R.id.spnDia:
                 Dia = parent.getItemAtPosition(i).toString();
-                Toast.makeText(this, "spinner dia" + Dia, Toast.LENGTH_SHORT).show();
+
+                Log.i("teste", "dia " + Dia);
+
+                Toast.makeText(this,Dia, Toast.LENGTH_SHORT).show();
                 switch (Dia) {
                     case "Domingo":
                         diaFormatado = "dom";
                         break;
 
-                    case "Segunda":
+                    case "Segunda-Feira":
                         diaFormatado = "seg";
                         break;
 
-                    case "Terça":
+                    case "Terça-Feira":
                         diaFormatado = "ter";
                         break;
 
-                    case "Quarta":
+                    case "Quarta-Feira":
                         diaFormatado = "qua";
                         break;
 
-                    case "Quinta":
+                    case "Quinta-Feira":
                         diaFormatado = "qui";
                         break;
 
-                    case "Sexta":
+                    case "Sexta-Feira":
                         diaFormatado = "sex";
                         break;
 
@@ -425,10 +427,11 @@ public class PesquisaActivity extends AppCompatActivity implements AdapterView.O
 
                         String acao = "pesquisaEstagiario";
 
-                        String parametros = "acao=" + acao + "&dia=" + dia + "&horario=" + horario;
+                        String parametros = "acao=" + acao + "&dia=" + diaFormatado + "&horario=" + horario;
 
+                        URL url = new URL("http://192.168.0.102:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
                      //   URL url = new URL("http://192.168.100.78:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
-                        URL url = new URL("http://10.87.202.138:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
+//                        URL url = new URL("http://10.87.202.138:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
                         // URL url = new URL ("http://10.87.202.168:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
 
                         Log.i("batata","chegou na url");
@@ -447,10 +450,19 @@ public class PesquisaActivity extends AppCompatActivity implements AdapterView.O
                         while ((linha = br.readLine()) != null){
                             obj = new JSONObject(linha);
                             Log.i("teste", "obj " + obj);
-                            Pessoa p = new Pessoa();
-                            p.setFbcod_pessoa(obj.getInt("cod_pessoa"));
-                            Log.i("teste", "FBcod " + p.getFbcod_pessoa());
-                            codPessoas.add(p);
+//                            List<String> codFb = new ArrayList<>();
+//                            codFb.add("lwR0SMHkoZXIhgbfoYmT7ovoaTC2");
+
+                            List<String> LcodFb = new ArrayList<>();
+                            LcodFb.add(obj.getString("cod_pessoa"));
+
+                            Log.i("teste", "lista " + LcodFb.get(0));
+
+//                            Pessoa p = new Pessoa();
+//                            p.setFbcod_pessoa(obj.getInt("cod_pessoa"));
+//                            Log.i("teste", "FBcod " + p.getFbcod_pessoa());
+//                            codPessoas.add(p);
+                            fetchUsers(LcodFb);
                         }
                     } catch (Exception e) {
                         Log.e("Exception", e.toString());
