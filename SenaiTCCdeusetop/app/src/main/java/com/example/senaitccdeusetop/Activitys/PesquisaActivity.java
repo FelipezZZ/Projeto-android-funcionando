@@ -170,9 +170,7 @@ public class PesquisaActivity extends AppCompatActivity implements AdapterView.O
     private void  fetchUsers(){
 
         List<String> codFb = new ArrayList<>();
-        codFb.add("15Wj548WSBRzKRRzojdnV9qzCgf1");
-        codFb.add("2R4m49qfqxenrG3Bb40XXehH1Lz1");
-        codFb.add("6lURbhdNfhgQ6gla6Fvghwdsk8L2");
+        codFb.add("lwR0SMHkoZXIhgbfoYmT7ovoaTC2");
 
         for (String s : codFb){
             FirebaseFirestore.getInstance().collection("/users").document(s).get()
@@ -256,8 +254,8 @@ public class PesquisaActivity extends AppCompatActivity implements AdapterView.O
                     String cod_pessoa = String.valueOf(logado.getFbcod_pessoa());
 
                     parametros = "acao="+acao+"&codPessoa="+cod_pessoa;
-
-                    URL url = new URL("http://192.168.100.78:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
+                    URL url = new URL("http://10.87.202.138:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
+                //    URL url = new URL("http://192.168.100.78:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
                     //URL url = new URL("http://10.87.202.177:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
 //                    URL url = new URL("http://10.87.202.168:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
 
@@ -429,8 +427,8 @@ public class PesquisaActivity extends AppCompatActivity implements AdapterView.O
 
                         String parametros = "acao=" + acao + "&dia=" + dia + "&horario=" + horario;
 
-                        URL url = new URL("http://192.168.100.78:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
-                        //URL url = new URL("http://10.87.202.138:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
+                     //   URL url = new URL("http://192.168.100.78:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
+                        URL url = new URL("http://10.87.202.138:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
                         // URL url = new URL ("http://10.87.202.168:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
 
                         Log.i("batata","chegou na url");

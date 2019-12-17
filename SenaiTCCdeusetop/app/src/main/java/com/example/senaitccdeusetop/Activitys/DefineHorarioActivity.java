@@ -37,6 +37,9 @@ public class DefineHorarioActivity extends AppCompatActivity implements AdapterV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_define_horario);
+
+        btnSalvar = findViewById(R.id.btnSalvar);
+
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,8 +169,8 @@ public class DefineHorarioActivity extends AppCompatActivity implements AdapterV
 
                         String parametros = "acao=" + acao + "&dia=" + dia + "&horario=" + horario+"&codPessoa"+codPessoa;
 
-                        URL url = new URL("http://192.168.100.78:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
-                        //URL url = new URL("http://10.87.202.138:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
+                       // URL url = new URL("http://192.168.100.78:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
+                        URL url = new URL("http://10.87.202.138:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
                         // URL url = new URL ("http://10.87.202.168:8080/ProjetoPsicologoBackEnd/ProcessaPessoa");
 
                         Log.i("batata","chegou na url");
