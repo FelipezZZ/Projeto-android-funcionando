@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activitys.EditarPerfilActivity"></activity>
+        <activity android:name=".Activitys.DefineHorarioActivity"></activity>
+        <activity android:name=".Activitys.EditarPerfilActivity" />
         <activity android:name=".Activitys.AnamnesesActivity" />
         <activity android:name=".Activitys.PesquisaActivity" />
         <activity android:name=".Chat.ChatActivity">

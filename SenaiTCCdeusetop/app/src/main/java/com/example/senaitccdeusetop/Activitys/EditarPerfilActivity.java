@@ -119,6 +119,11 @@ public class EditarPerfilActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 verifyAuthentication();
                 return true;
+
+            case R.id.item5:
+                intent = new Intent(EditarPerfilActivity.this,DefineHorarioActivity.class);
+                startActivity(intent);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
